@@ -3,48 +3,55 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>秋招助手 · 作品集</title>
-<style>
-  body { font-family: -apple-system, "PingFang SC", "Microsoft YaHei", system-ui, sans-serif; max-width: 720px; margin: 0 auto; padding: 48px 24px; background: #f8f9fb; color: #16181d; line-height: 1.8; }
-  h1 { font-size: 26px; }
-  .lead { color: #555a63; margin-top: 8px; }
-  h2 { margin-top: 36px; font-size: 18px; }
-  img { width: 100%; border-radius: 8px; margin: 20px 0; border: 1px solid #e6e8ed; }
-  ul { padding-left: 20px; }
-  li { margin: 8px 0; }
-  a { color: #2563eb; text-decoration: none; }
-  a:hover { text-decoration: underline; }
-  .back { display: inline-block; margin-top: 40px; }
-  .links { margin-top: 24px; }
-</style>
+<title>秋招助手 · 赖琳茵作品集</title>
+<link rel="stylesheet" href="style.css">
 </head>
-<body>
+<body style="--accent:#2563eb">
 
-<h1>秋招助手 · 求职投递管理 + AI 提效</h1>
-<p class="lead">从自己秋招的痛点出发做的工具，投递进度跟踪加 AI 周报、选岗、面试准备，真实在用。</p>
+<nav class="nav">
+  <div class="nav-inner">
+    <a class="brand" href="index.html">赖琳茵 · 作品集</a>
+    <span class="nav-links"><a href="index.html">总览</a><a href="https://github.com/LinYinLai/job-tracker">源码</a></span>
+  </div>
+</nav>
 
-<img src="shots/jobtracker-home.png" alt="秋招助手界面">
+<div class="container">
+  <header class="page-hero">
+    <span class="eyebrow">项目 01</span>
+    <h1>秋招助手 · 求职投递管理 + AI 提效</h1>
+    <p class="lead">从自己秋招的痛点出发做的工具，投递进度跟踪加 AI 周报、选岗、面试准备，真实在用。</p>
+    <div class="actions">
+      <a class="btn primary" href="http://119.28.16.198:8001">在线演示</a>
+      <a class="btn" href="https://github.com/LinYinLai/job-tracker">源码仓库</a>
+    </div>
+  </header>
 
-<h2>背景</h2>
-<p>秋招同时投几十家，进度靠 Excel 记容易乱，企业回复邮件一封封刷容易漏，周报和面试准备又是重复劳动。做了个先给自己用的东西，把这些串起来。它现在没有第二个用户，也没有埋点数据，就是个认真做出来的个人工具。</p>
+  <div class="page-body">
+    <img src="shots/jobtracker-home.png" alt="秋招助手界面">
 
-<h2>关键决策</h2>
-<ul>
-  <li>第一版就是自己投的那 36 家到底到哪一步了，没别的。</li>
-  <li>AI 做成四个固定入口（周报、选岗、面试准备、作品集识别），没做自由对话。求职场景结构太固定，固定入口能做输入校验、脱敏、成本也算得清。</li>
-  <li>邮件用 IMAP 拉回来判状态，测评、笔试、面试、offer、拒绝、调剂都认，处理了调剂到别的岗位却被当成拒绝这种边角。</li>
-  <li>DEMO_MODE 把真实数据和演示数据分开，线上 demo 用虚构企业和虚构简历，走预生成缓存，不烧 key、不泄露真实信息。</li>
-  <li>数据都留本地，桌面版加自建后端，不交给任何平台。</li>
-</ul>
+    <h2>背景</h2>
+    <p>秋招同时投几十家，进度靠 Excel 记容易乱，企业回复邮件一封封刷容易漏，周报和面试准备又是重复劳动。做了个先给自己用的东西，把这些串起来。它现在没有第二个用户，也没有埋点数据，就是个认真做出来的个人工具。</p>
 
-<h2>技术</h2>
-<p>Flask + SQLite + 单文件前端 + Electron，AI 走 DeepSeek。</p>
+    <h2>关键决策</h2>
+    <ul>
+      <li>第一版就是自己投的那 36 家到底到哪一步了，没别的。</li>
+      <li>AI 做成四个固定入口（周报、选岗、面试准备、作品集识别），没做自由对话。求职场景结构太固定，固定入口能做输入校验、脱敏、成本也算得清。</li>
+      <li>邮件用 IMAP 拉回来判状态，测评、笔试、面试、offer、拒绝、调剂都认，处理了调剂到别的岗位却被当成拒绝这种边角。</li>
+      <li>DEMO_MODE 把真实数据和演示数据分开，线上 demo 用虚构企业和虚构简历，走预生成缓存，不烧 key、不泄露真实信息。</li>
+      <li>数据都留本地，桌面版加自建后端，不交给任何平台。</li>
+    </ul>
 
-<h2>复盘</h2>
-<p>数据模型阶段迁移会把还在流程里的企业退回成等待；163 邮箱 IMAP 的 Unsafe Login、垃圾箱 UTF-7 编码逐个修。没有真实用户和数据是最大短板，下一步先补埋点和用户访谈。</p>
+    <h2>技术</h2>
+    <p>Flask + SQLite + 单文件前端 + Electron，AI 走 DeepSeek。</p>
 
-<p class="links"><a href="http://119.28.16.198:8001">在线演示</a> · <a href="https://github.com/LinYinLai/job-tracker">源码仓库</a></p>
-<p class="back"><a href="index.html">← 返回总览</a></p>
+    <h2>复盘</h2>
+    <p>数据模型阶段迁移会把还在流程里的企业退回成等待；163 邮箱 IMAP 的 Unsafe Login、垃圾箱 UTF-7 编码逐个修。没有真实用户和数据是最大短板，下一步先补埋点和用户访谈。</p>
+
+    <a class="btn back" href="index.html">← 返回总览</a>
+  </div>
+
+  <footer>赖琳茵 · GitHub @LinYinLai</footer>
+</div>
 
 </body>
 </html>
