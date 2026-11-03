@@ -25,7 +25,7 @@ body {
 a { color: var(--accent); text-decoration: none; }
 a:hover { text-decoration: underline; }
 
-.container { max-width: 880px; margin: 0 auto; padding: 0 24px; }
+.container { max-width: 1500px; margin: 0 auto; padding: 0 24px; }
 
 /* 顶部导航 */
 .nav {
@@ -35,7 +35,7 @@ a:hover { text-decoration: underline; }
   border-bottom: 1px solid var(--border-light);
 }
 .nav-inner {
-  max-width: 880px; margin: 0 auto; padding: 0 24px;
+  max-width: 1500px; margin: 0 auto; padding: 0 24px;
   height: 56px;
   display: flex; align-items: center; justify-content: space-between;
 }
@@ -103,7 +103,7 @@ a:hover { text-decoration: underline; }
 .page-hero .actions { margin-top: 22px; }
 
 .page-body { padding: 20px 0 64px; }
-.page-body img { width: 100%; border-radius: var(--radius); margin: 16px 0; border: 1px solid var(--border); }
+.page-body img { display: block; max-width: 720px; width: 100%; margin: 20px auto; border-radius: var(--radius); border: 1px solid var(--border); }
 .page-body h2 {
   font-size: 19px; font-weight: 650; margin-top: 42px; padding-left: 12px;
   border-left: 3px solid var(--accent);

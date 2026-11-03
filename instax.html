@@ -19,7 +19,7 @@
   <header class="page-hero">
     <span class="eyebrow">项目 02</span>
     <h1>instax 拍立得 · AI 滤镜 + 反即时满足</h1>
-    <p class="lead">以富士 instax mini 7c 为原型的互动网页，把等待做成体验，把 AI 做成能看懂、能微调的调色工具。</p>
+    <p class="lead">以富士 instax mini 7c 为原型的互动拍立得网页，将显影等待设计为体验的一部分。</p>
     <div class="actions">
       <a class="btn primary" href="https://instax-room.netlify.app">在线体验</a>
     </div>
@@ -28,24 +28,34 @@
   <div class="page-body">
     <img src="shots/instax-home.png" alt="instax 拍立得首页">
     <img src="shots/instax-grade.png" alt="AI 调色面板">
+    <img src="shots/instax-detail.png" alt="相纸放大显影">
 
     <h2>背景</h2>
-    <p>滤镜 App 都在比谁更即时、更好改，拍立得那种只有一张、要等显影的劲儿没了；AI 滤镜又普遍是黑盒，用户不知道参数怎么来的。做了个网页把这两件事都找回来。</p>
+    <p>主流滤镜应用普遍追求即时反馈与高度可编辑性，削弱了拍立得"仅此一张、等待显影"的仪式感；同时，AI 滤镜多为黑盒，用户难以理解参数来源。本项目以富士 instax mini 7c 为原型，面向偏好复古胶片审美的用户，将显影等待设计为体验的一部分，并将 AI 能力转化为可解释、可微调的调色工具。</p>
+
+    <h2>功能</h2>
+    <ul>
+      <li>3D 相机按下快门输出相纸</li>
+      <li>相纸拖入取景框后 90 秒显影，摇晃鼠标最多可三倍加速</li>
+      <li>输入相机型号，AI 联网检索该机型的发色特征，生成 7 个可微调的滤镜参数</li>
+      <li>无 API Key 时亦可通过内置预生成滤镜卡体验</li>
+      <li>收藏墙与模板管理，单文件构建、双击即开</li>
+    </ul>
 
     <h2>关键决策</h2>
     <ul>
-      <li>显影 90 秒不能跳过，摇鼠标最多加速三倍。等待本身是拍立得的情绪，不是 bug。</li>
-      <li>AI 没做帮你美颜，做拿相机型号换一套滤镜参数。DeepSeek 联网查这台机子的真实发色，吐出 7 个能看懂的参数。</li>
-      <li>模型输出先过 JSON 和范围校验，滑杆区间之外的值进不来，界面不会被 AI 弄崩。</li>
-      <li>没 key 也能玩，内置三张预生成的滤镜卡，加一张默认 instax 滤镜。</li>
-      <li>调色在装片前烘成新底图，下游显影、收藏、画廊零改动。</li>
+      <li>显影设定为 90 秒且不可跳过，摇晃鼠标最多三倍加速，将等待本身作为拍立得体验的情感锚点。</li>
+      <li>AI 能力定位于相机型号到滤镜参数的映射：用户输入具有文化共识的相机型号，AI 联网检索该机型发色特征，输出 7 个可解释、可微调的参数。</li>
+      <li>模型输出经 JSON 与参数范围校验，越界值无法进入界面，保证稳定性。</li>
+      <li>无 API Key 时提供三张预生成滤镜卡与默认滤镜，保证体验链路完整。</li>
+      <li>调色在拍摄前烘焙为新底图，显影、收藏、画廊等下游模块无需改动。</li>
     </ul>
 
     <h2>技术</h2>
-    <p>纯前端零后端，Three.js + Canvas 2D + localStorage，DeepSeek 联网搜索，单文件构建双击即开。</p>
+    <p>纯前端零后端，Three.js + Canvas 2D + localStorage，DeepSeek 联网搜索，单文件构建。</p>
 
     <h2>复盘</h2>
-    <p>Safari 不支持 Canvas 的 ctx.filter，调色烘焙降级成手写颜色矩阵，逐像素算。如果重来先埋点，把体验好换成能算的数字。</p>
+    <p>Safari 不支持 Canvas 的 ctx.filter，调色烘焙降级为手写颜色矩阵逐像素处理。后续将优先补充数据埋点，将体验评价转化为量化指标。</p>
 
     <a class="btn back" href="index.html">← 返回总览</a>
   </div>

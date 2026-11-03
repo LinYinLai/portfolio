@@ -19,7 +19,7 @@
   <header class="page-hero">
     <span class="eyebrow">项目 03</span>
     <h1>DICS Records · 3D 唱片墙 + 唱机</h1>
-    <p class="lead">12 张专辑排成 3D 弧形旋转木马，点按中心碟飞入唱机，支持自制 CD 上传和 iTunes 自动抓封面音频。</p>
+    <p class="lead">将 12 张专辑组织为可交互的 3D 唱片墙，支持播放、歌词展示与自制 CD 上传。</p>
     <div class="actions">
       <a class="btn primary" href="http://119.28.16.198">在线体验</a>
     </div>
@@ -27,23 +27,34 @@
 
   <div class="page-body">
     <img src="shots/dics-home.png" alt="DICS Records 唱片墙">
+    <img src="shots/dics-play.png" alt="唱机播放中，显示歌词">
+    <img src="shots/dics-pause.png" alt="唱机暂停">
 
     <h2>背景</h2>
-    <p>想做一个能交互的唱片墙，不只静态展示专辑，还能把碟放进唱机、自己上传 CD 加进队列。</p>
+    <p>主流流媒体以列表形式呈现音乐，缺少实体唱片"取出、放入唱机"的仪式感。本项目旨在构建一个可交互的 3D 唱片墙，在静态展示专辑封面之外，支持将碟片放入唱机、播放音频、展示歌词，并支持用户上传自制 CD 加入队列。</p>
+
+    <h2>功能</h2>
+    <ul>
+      <li>3D 弧形旋转木马浏览专辑</li>
+      <li>点击中心碟片进入唱机模式，播放音频并显示歌词金句</li>
+      <li>自制 CD 上传，IndexedDB 持久化，刷新后重建</li>
+      <li>通过 iTunes 搜索自动获取封面与音频</li>
+      <li>提取封面主色驱动唱机背景渐变</li>
+    </ul>
 
     <h2>关键决策</h2>
     <ul>
-      <li>封面不贴 GLB 的 UV（展开太乱），叠一个 RingGeometry 环形印刷层在碟片顶面。</li>
-      <li>唱机转到只剩颜色靠贴图模糊实现，60fps 下真调超高转速只会频闪。</li>
-      <li>自制 CD 存 IndexedDB，刷新后重建；封面取平均色做主题色。</li>
-      <li>自制 CD 用 iTunes 搜索自动抓封面和音频，浏览器内直调，搜不到再回退手动上传。</li>
+      <li>封面不直接映射 GLB 的 UV（展开混乱），改以 RingGeometry 环形印刷层叠加于碟片顶面。</li>
+      <li>唱机高速旋转的视觉效果通过贴图模糊实现，60fps 下真实超高转速只会产生频闪。</li>
+      <li>自制 CD 存储于 IndexedDB，刷新后重建；封面主色用于驱动主题色。</li>
+      <li>自制 CD 通过 iTunes 搜索自动获取封面与音频，浏览器内直调，检索失败时回退至手动上传。</li>
     </ul>
 
     <h2>技术</h2>
     <p>Three.js + GSAP + Lenis，GLB 碟片叠 RingGeometry 印刷层。</p>
 
     <h2>复盘</h2>
-    <p>部署踩过国内静态托管全要备案的坑，最后自建香港轻量服务器。旧浏览器上 WebGL 全屏画布要禁用一切混合模式和 backdrop-filter，否则导航栏隐形。</p>
+    <p>部署过程中遇到国内静态托管需备案的问题，最终采用自建香港轻量服务器；旧浏览器上 WebGL 全屏画布需禁用混合模式与 backdrop-filter，否则导航栏不可见。</p>
 
     <a class="btn back" href="index.html">← 返回总览</a>
   </div>

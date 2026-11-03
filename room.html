@@ -19,7 +19,7 @@
   <header class="page-hero">
     <span class="eyebrow">项目 04</span>
     <h1>梦核房间 · 个人主页</h1>
-    <p class="lead">中式梦核风格的互动房间，贴纸 hover、猫的五段演出、电视三频道、百叶窗昼夜系统。</p>
+    <p class="lead">中式梦核风格的互动房间个人主页，将简历与项目信息融入房间场景。</p>
     <div class="actions">
       <a class="btn primary" href="https://portfolio-lightning.netlify.app">在线体验</a>
     </div>
@@ -29,21 +29,30 @@
     <img src="shots/room-home.png" alt="梦核房间">
 
     <h2>背景</h2>
-    <p>想做一个人主页，把简历、项目这些正经东西藏进一个梦核房间里，猫按脚本演几段，最后跳到各个项目去。</p>
+    <p>个人主页通常由信息卡片与自我介绍构成，形式较为单一。本项目将简历、项目等内容融入一个中式梦核风格的房间场景，访客进入后先感受氛围，再通过猫的演出逐步发现内容；同时作为各项目的入口，演出结束后跳转到对应项目。</p>
+
+    <h2>功能</h2>
+    <ul>
+      <li>贴纸 hover 浮起</li>
+      <li>猫以五段演出串联内容：简历、工牌、拍立得、CD 机、碟片</li>
+      <li>电视三频道循环：雪花、PM5544 测试卡、加菲猫</li>
+      <li>百叶窗昼夜系统，拖拽实时调节明暗</li>
+      <li>工牌 3D 翻转（reactbits Lanyard 移植，自研绳物理）</li>
+    </ul>
 
     <h2>关键决策</h2>
     <ul>
-      <li>猫是换装皮影，六张姿态抠图加 CSS 位移，演出脚本用 async/await 写。</li>
-      <li>工牌用 reactbits 的 Lanyard 3D 一比一移植，自研 Verlet 绳物理加程序化织带，卡面换真实学生证。</li>
-      <li>百叶窗昼夜系统，一条 CSS 变量从 0 到 1 连续调，拖拽实时变暗。</li>
-      <li>坐标一比一取自参考 PPT 的 slide XML，元素全部百分比定位。</li>
+      <li>猫采用换装皮影方案，六张姿态抠图配合 CSS 位移，演出脚本以 async/await 编写。</li>
+      <li>工牌移植 reactbits 的 Lanyard 3D 组件，自研 Verlet 绳物理与程序化织带，卡面替换为真实学生证。</li>
+      <li>昼夜系统以单一 CSS 变量从 0 到 1 连续调节，拖拽实时改变明暗。</li>
+      <li>元素坐标一比一取自参考 PPT 的 slide XML，全部采用百分比定位。</li>
     </ul>
 
     <h2>技术</h2>
-    <p>纯 HTML/CSS/JS 无依赖，Three.js 只用于工牌那一块。</p>
+    <p>纯 HTML/CSS/JS 无依赖，Three.js 仅用于工牌。</p>
 
     <h2>复盘</h2>
-    <p>21MB 的 PNG 首屏压成 WebP 到 1MB。Netlify 用 Windows 自带 zip 打包，路径带反斜杠会全站 404，得换 Python 重新打。</p>
+    <p>首屏 21MB PNG 压缩为 WebP 后降至 1MB；Netlify 使用 Windows 自带 zip 打包会产生反斜杠路径导致全站 404，需改用 Python 重新打包。</p>
 
     <a class="btn back" href="index.html">← 返回总览</a>
   </div>

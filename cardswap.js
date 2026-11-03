@@ -99,10 +99,10 @@
     var i;
     for (i = 0; i < count; i++) {
       var item = items[i];
-      var slot = document.createElement('div');
-      slot.className = 'card-swap-slot';
-      slot.setAttribute('data-swap-index', String(i));
-      slot.innerHTML =
+      var slotEl = document.createElement('div');
+      slotEl.className = 'card-swap-slot';
+      slotEl.setAttribute('data-swap-index', String(i));
+      slotEl.innerHTML =
         '<div class="card-swap-card">' +
           '<div class="card-swap-item">' +
             '<div class="card-swap-head"><span class="card-swap-title">' + esc(item.cardTitle || item.title) + '</span></div>' +
@@ -111,8 +111,8 @@
           '<span class="card-swap-card-rim" aria-hidden="true"></span>' +
         '</div>' +
         '<span class="card-swap-shade" aria-hidden="true"></span>';
-      stage.appendChild(slot);
-      slots.push(slot);
+      stage.appendChild(slotEl);
+      slots.push(slotEl);
     }
 
     var deck = [];
