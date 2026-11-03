@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>梦核房间 · 作品集</title>
+<style>
+  body { font-family: -apple-system, "PingFang SC", "Microsoft YaHei", system-ui, sans-serif; max-width: 720px; margin: 0 auto; padding: 48px 24px; background: #f8f9fb; color: #16181d; line-height: 1.8; }
+  h1 { font-size: 26px; }
+  .lead { color: #555a63; margin-top: 8px; }
+  h2 { margin-top: 36px; font-size: 18px; }
+  img { width: 100%; border-radius: 8px; margin: 20px 0; border: 1px solid #e6e8ed; }
+  ul { padding-left: 20px; }
+  li { margin: 8px 0; }
+  a { color: #2563eb; text-decoration: none; }
+  a:hover { text-decoration: underline; }
+  .back { display: inline-block; margin-top: 40px; }
+  .links { margin-top: 24px; }
+</style>
+</head>
+<body>
+
+<h1>梦核房间 · 个人主页</h1>
+<p class="lead">中式梦核风格的互动房间，贴纸 hover、猫的五段演出、电视三频道、百叶窗昼夜系统。</p>
+
+<img src="shots/room-home.png" alt="梦核房间">
+
+<h2>背景</h2>
+<p>想做一个人主页，把简历、项目这些正经东西藏进一个梦核房间里，猫按脚本演几段，最后跳到各个项目去。</p>
+
+<h2>关键决策</h2>
+<ul>
+  <li>猫是换装皮影，六张姿态抠图加 CSS 位移，演出脚本用 async/await 写。</li>
+  <li>工牌用 reactbits 的 Lanyard 3D 一比一移植，自研 Verlet 绳物理加程序化织带，卡面换真实学生证。</li>
+  <li>百叶窗昼夜系统，一条 CSS 变量从 0 到 1 连续调，拖拽实时变暗。</li>
+  <li>坐标一比一取自参考 PPT 的 slide XML，元素全部百分比定位。</li>
+</ul>
+
+<h2>技术</h2>
+<p>纯 HTML/CSS/JS 无依赖，Three.js 只用于工牌那一块。</p>
+
+<h2>复盘</h2>
+<p>21MB 的 PNG 首屏压成 WebP 到 1MB。Netlify 用 Windows 自带 zip 打包，路径带反斜杠会全站 404，得换 Python 重新打。</p>
+
+<p class="links"><a href="https://portfolio-lightning.netlify.app">在线体验</a></p>
+<p class="back"><a href="index.html">← 返回总览</a></p>
+
+</body>
+</html>

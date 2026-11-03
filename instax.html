@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>instax 拍立得 · 作品集</title>
+<style>
+  body { font-family: -apple-system, "PingFang SC", "Microsoft YaHei", system-ui, sans-serif; max-width: 720px; margin: 0 auto; padding: 48px 24px; background: #f8f9fb; color: #16181d; line-height: 1.8; }
+  h1 { font-size: 26px; }
+  .lead { color: #555a63; margin-top: 8px; }
+  h2 { margin-top: 36px; font-size: 18px; }
+  img { width: 100%; border-radius: 8px; margin: 20px 0; border: 1px solid #e6e8ed; }
+  ul { padding-left: 20px; }
+  li { margin: 8px 0; }
+  a { color: #2563eb; text-decoration: none; }
+  a:hover { text-decoration: underline; }
+  .back { display: inline-block; margin-top: 40px; }
+  .links { margin-top: 24px; }
+</style>
+</head>
+<body>
+
+<h1>instax 拍立得 · AI 滤镜 + 反即时满足</h1>
+<p class="lead">以富士 instax mini 7c 为原型的互动网页，把等待做成体验，把 AI 做成能看懂、能微调的调色工具。</p>
+
+<img src="shots/instax-home.png" alt="instax 拍立得首页">
+<img src="shots/instax-grade.png" alt="AI 调色面板">
+
+<h2>背景</h2>
+<p>滤镜 App 都在比谁更即时、更好改，拍立得那种只有一张、要等显影的劲儿没了；AI 滤镜又普遍是黑盒，用户不知道参数怎么来的。做了个网页把这两件事都找回来。</p>
+
+<h2>关键决策</h2>
+<ul>
+  <li>显影 90 秒不能跳过，摇鼠标最多加速三倍。等待本身是拍立得的情绪，不是 bug。</li>
+  <li>AI 没做帮你美颜，做拿相机型号换一套滤镜参数。DeepSeek 联网查这台机子的真实发色，吐出 7 个能看懂的参数。</li>
+  <li>模型输出先过 JSON 和范围校验，滑杆区间之外的值进不来，界面不会被 AI 弄崩。</li>
+  <li>没 key 也能玩，内置三张预生成的滤镜卡，加一张默认 instax 滤镜。</li>
+  <li>调色在装片前烘成新底图，下游显影、收藏、画廊零改动。</li>
+</ul>
+
+<h2>技术</h2>
+<p>纯前端零后端，Three.js + Canvas 2D + localStorage，DeepSeek 联网搜索，单文件构建双击即开。</p>
+
+<h2>复盘</h2>
+<p>Safari 不支持 Canvas 的 ctx.filter，调色烘焙降级成手写颜色矩阵，逐像素算。如果重来先埋点，把体验好换成能算的数字。</p>
+
+<p class="links"><a href="https://instax-room.netlify.app">在线体验</a></p>
+<p class="back"><a href="index.html">← 返回总览</a></p>
+
+</body>
+</html>
