@@ -6,6 +6,17 @@
 <title>赖琳茵 · 作品集</title>
 <meta name="description" content="赖琳茵的作品集。金融科技背景，转 AI 产品方向。从想法到上线——四个项目各自从一个具体想法或真实痛点出发，最后都做到能玩、能用、已经上线。">
 <link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="cardswap.css">
+<style>
+  .deck-wrap { padding: 0 0 16px; }
+  .cardswap-container { max-width: 620px; margin: 0 auto; height: 460px; }
+  .hint { text-align: center; color: #8a8f98; font-size: 13px; margin: 6px 0 24px; }
+  .deck-detail { text-align: center; padding: 24px 24px 0; border-top: 1px solid #eff0f4; }
+  .deck-detail h2 { font-size: 22px; font-weight: 650; }
+  .deck-detail .desc { color: #555a63; margin-top: 8px; max-width: 620px; margin-left: auto; margin-right: auto; }
+  .deck-detail .chips { margin-top: 14px; }
+  .deck-detail .actions { margin-top: 18px; }
+</style>
 </head>
 <body>
 
@@ -24,69 +35,109 @@
     <p class="story">从想法到上线——四个项目各自从一个具体想法或真实痛点出发，最后都做到能玩、能用、已经上线。</p>
   </header>
 
-  <main class="projects">
-
-    <section class="card" style="--accent:#2563eb">
-      <img class="shot" src="shots/jobtracker-home.png" alt="秋招助手界面">
-      <div class="card-body">
-        <span class="card-num">01</span>
-        <h2><a href="job-tracker.html">秋招助手 · 求职投递管理 + AI 提效</a></h2>
-        <p class="desc">五分区看板跟踪投递进度，IMAP 自动识别企业回复并更新阶段，AI 生成周报、选岗、面试准备。真实用于个人秋招。</p>
-        <div class="chips"><span class="chip">Flask</span><span class="chip">SQLite</span><span class="chip">Electron</span><span class="chip">DeepSeek</span></div>
-        <div class="actions">
-          <a class="btn primary" href="job-tracker.html">项目详情</a>
-          <a class="btn" href="http://119.28.16.198:8001">在线演示</a>
-          <a class="btn" href="https://github.com/LinYinLai/job-tracker">源码</a>
-        </div>
-      </div>
-    </section>
-
-    <section class="card" style="--accent:#0d9488">
-      <img class="shot" src="shots/instax-home.png" alt="instax 拍立得">
-      <div class="card-body">
-        <span class="card-num">02</span>
-        <h2><a href="instax.html">instax 拍立得 · AI 滤镜 + 反即时满足</a></h2>
-        <p class="desc">以富士 instax mini 7c 为原型的互动网页。3D 相机吐相纸，90 秒显影，AI 联网生成相机滤镜，收进收藏墙。</p>
-        <div class="chips"><span class="chip">Three.js</span><span class="chip">DeepSeek</span><span class="chip">纯前端</span></div>
-        <div class="actions">
-          <a class="btn primary" href="instax.html">项目详情</a>
-          <a class="btn" href="https://instax-room.netlify.app">在线体验</a>
-        </div>
-      </div>
-    </section>
-
-    <section class="card" style="--accent:#7c3aed">
-      <img class="shot" src="shots/dics-home.png" alt="DICS Records">
-      <div class="card-body">
-        <span class="card-num">03</span>
-        <h2><a href="dics.html">DICS Records · 3D 唱片墙 + 唱机</a></h2>
-        <p class="desc">12 张专辑排成 3D 弧形旋转木马，点按中心碟飞入唱机，支持自制 CD 上传和 iTunes 自动抓封面音频。</p>
-        <div class="chips"><span class="chip">Three.js</span><span class="chip">GSAP</span><span class="chip">Lenis</span></div>
-        <div class="actions">
-          <a class="btn primary" href="dics.html">项目详情</a>
-          <a class="btn" href="http://119.28.16.198">在线体验</a>
-        </div>
-      </div>
-    </section>
-
-    <section class="card" style="--accent:#b45309">
-      <img class="shot" src="shots/room-home.png" alt="梦核房间">
-      <div class="card-body">
-        <span class="card-num">04</span>
-        <h2><a href="room.html">梦核房间 · 个人主页</a></h2>
-        <p class="desc">中式梦核互动房间，贴纸 hover、猫的五段演出、电视三频道、百叶窗昼夜系统。</p>
-        <div class="chips"><span class="chip">原生 JS</span><span class="chip">Three.js</span><span class="chip">无依赖</span></div>
-        <div class="actions">
-          <a class="btn primary" href="room.html">项目详情</a>
-          <a class="btn" href="https://portfolio-lightning.netlify.app">在线体验</a>
-        </div>
-      </div>
-    </section>
-
-  </main>
+  <section class="deck-wrap" id="deck-wrap">
+    <div class="cardswap-container" id="cardswap"></div>
+    <p class="hint">拖拽最上面的卡可以甩出去换一张，也可以等它自动轮播</p>
+    <div class="deck-detail">
+      <h2 id="detail-title"></h2>
+      <p class="desc" id="detail-desc"></p>
+      <div class="chips" id="detail-chips"></div>
+      <div class="actions" id="detail-links"></div>
+    </div>
+  </section>
 
   <footer>赖琳茵 · GitHub @LinYinLai</footer>
 </div>
+
+<script src="cardswap.js"></script>
+<script>
+  var PROJECTS = [
+    {
+      cardTitle: '秋招助手',
+      title: '秋招助手 · 求职投递管理 + AI 提效',
+      image: 'shots/jobtracker-home.png',
+      accent: '#2563eb',
+      desc: '五分区看板跟踪投递进度，IMAP 自动识别企业回复并更新阶段，AI 生成周报、选岗、面试准备。真实用于个人秋招。',
+      chips: ['Flask', 'SQLite', 'Electron', 'DeepSeek'],
+      links: [
+        { label: '项目详情', href: 'job-tracker.html', primary: true },
+        { label: '在线演示', href: 'http://119.28.16.198:8001' },
+        { label: '源码', href: 'https://github.com/LinYinLai/job-tracker' }
+      ]
+    },
+    {
+      cardTitle: 'instax 拍立得',
+      title: 'instax 拍立得 · AI 滤镜 + 反即时满足',
+      image: 'shots/instax-home.png',
+      accent: '#0d9488',
+      desc: '以富士 instax mini 7c 为原型的互动网页。3D 相机吐相纸，90 秒显影，AI 联网生成相机滤镜，收进收藏墙。',
+      chips: ['Three.js', 'DeepSeek', '纯前端'],
+      links: [
+        { label: '项目详情', href: 'instax.html', primary: true },
+        { label: '在线体验', href: 'https://instax-room.netlify.app' }
+      ]
+    },
+    {
+      cardTitle: 'DICS Records',
+      title: 'DICS Records · 3D 唱片墙 + 唱机',
+      image: 'shots/dics-home.png',
+      accent: '#7c3aed',
+      desc: '12 张专辑排成 3D 弧形旋转木马，点按中心碟飞入唱机，支持自制 CD 上传和 iTunes 自动抓封面音频。',
+      chips: ['Three.js', 'GSAP', 'Lenis'],
+      links: [
+        { label: '项目详情', href: 'dics.html', primary: true },
+        { label: '在线体验', href: 'http://119.28.16.198' }
+      ]
+    },
+    {
+      cardTitle: '梦核房间',
+      title: '梦核房间 · 个人主页',
+      image: 'shots/room-home.png',
+      accent: '#b45309',
+      desc: '中式梦核互动房间，贴纸 hover、猫的五段演出、电视三频道、百叶窗昼夜系统。',
+      chips: ['原生 JS', 'Three.js', '无依赖'],
+      links: [
+        { label: '项目详情', href: 'room.html', primary: true },
+        { label: '在线体验', href: 'https://portfolio-lightning.netlify.app' }
+      ]
+    }
+  ];
+
+  var wrap = document.getElementById('deck-wrap');
+  var titleEl = document.getElementById('detail-title');
+  var descEl = document.getElementById('detail-desc');
+  var chipsEl = document.getElementById('detail-chips');
+  var linksEl = document.getElementById('detail-links');
+
+  function updateDetail(item) {
+    wrap.style.setProperty('--accent', item.accent);
+    titleEl.textContent = item.title;
+    descEl.textContent = item.desc;
+    chipsEl.innerHTML = '';
+    item.chips.forEach(function (c) {
+      var s = document.createElement('span');
+      s.className = 'chip';
+      s.textContent = c;
+      chipsEl.appendChild(s);
+    });
+    linksEl.innerHTML = '';
+    item.links.forEach(function (l) {
+      var a = document.createElement('a');
+      a.className = 'btn' + (l.primary ? ' primary' : '');
+      a.href = l.href;
+      a.textContent = l.label;
+      linksEl.appendChild(a);
+    });
+  }
+
+  initCardSwap(document.getElementById('cardswap'), {
+    items: PROJECTS,
+    width: 440,
+    height: 330,
+    onChange: function (index) { updateDetail(PROJECTS[index]); }
+  });
+  updateDetail(PROJECTS[0]);
+</script>
 
 </body>
 </html>
